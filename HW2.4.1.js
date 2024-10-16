@@ -17,18 +17,17 @@ let expencesExamples = [
 ];
 
 
-function myExpences(yearlyExpences) {
-    let sum = 0;
-    yearlyExpences.forEach(expense => {
-        if (expense > 1000) {
-            sum += expense;
-        }
+function findMonth(expencesExamples) {
+    let months = []; 
+    expencesExamples.forEach((element) => {
+        element.yearlyExpences.forEach((expences, index) => {
+            if (expences <= 1000) {
+                let monthName = new Date(2024, index).toLocaleString('default', { month: 'long' });
+                months.push(monthName); 
+            }
+        });
     });
-    return sum;
+    return months; 
 }
-let yearNumber = 0;
-expencesExamples.forEach((example) => {
-    let sum = myExpences(example.yearlyExpences);
-    yearNumber += 1;
-    console.log(`Сумма затрат ${yearNumber} год = ${sum}`);
-});
+
+console.log(findMonth(expencesExamples));
